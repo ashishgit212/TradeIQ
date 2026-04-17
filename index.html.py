@@ -4,8 +4,9 @@
   <title>TradePilot AI</title>
 </head>
 <body style="font-family: Arial; text-align:center; margin-top:100px;">
+
   <h1>📈 TradePilot AI</h1>
-  <p>Simple Options Profit Calculator</p>
+  <p>Options Profit Calculator</p>
 
   <input id="premium" placeholder="Enter Premium"><br><br>
   <input id="lot" placeholder="Lot Size"><br><br>
@@ -22,5 +23,6 @@
       document.getElementById("result").innerText = "Profit: ₹" + profit;
     }
   </script>
+
 </body>
 </html>
