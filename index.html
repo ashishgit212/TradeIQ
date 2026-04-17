@@ -2,25 +2,48 @@
 <html>
 <head>
   <title>TradePilot AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:100px;">
+
+<body style="font-family: Arial; background:#0f172a; color:white; text-align:center; padding:20px;">
 
   <h1>📈 TradePilot AI</h1>
-  <p>Options Profit Calculator</p>
+  <p>Options Profit & Loss Calculator</p>
 
-  <input id="premium" placeholder="Enter Premium"><br><br>
-  <input id="lot" placeholder="Lot Size"><br><br>
+  <div style="background:#1e293b; padding:20px; border-radius:10px; display:inline-block;">
 
-  <button onclick="calc()">Calculate</button>
+    <input id="buy" type="number" placeholder="Buy Price" style="padding:10px; margin:5px;"><br>
+    <input id="sell" type="number" placeholder="Sell Price" style="padding:10px; margin:5px;"><br>
+    <input id="lot" type="number" placeholder="Lot Size" style="padding:10px; margin:5px;"><br>
 
-  <h2 id="result"></h2>
+    <button onclick="calc()" style="padding:10px 20px; margin-top:10px; cursor:pointer;">
+      Calculate
+    </button>
+
+    <h2 id="result" style="margin-top:20px;"></h2>
+
+  </div>
 
   <script>
     function calc() {
-      let p = document.getElementById("premium").value;
-      let l = document.getElementById("lot").value;
-      let profit = p * l;
-      document.getElementById("result").innerText = "Profit: ₹" + profit;
+      let buy = parseFloat(document.getElementById("buy").value);
+      let sell = parseFloat(document.getElementById("sell").value);
+      let lot = parseFloat(document.getElementById("lot").value);
+
+      if (isNaN(buy) || isNaN(sell) || isNaN(lot)) {
+        document.getElementById("result").innerText = "⚠️ Enter all values";
+        return;
+      }
+
+      let profit = (sell - buy) * lot;
+
+      if (profit > 0) {
+        document.getElementById("result").innerHTML = "✅ Profit: ₹" + profit.toFixed(2);
+      } else if (profit < 0) {
+        document.getElementById("result").innerHTML = "❌ Loss: ₹" + profit.toFixed(2);
+      } else {
+        document.getElementById("result").innerHTML = "No Profit No Loss";
+      }
     }
   </script>
 
